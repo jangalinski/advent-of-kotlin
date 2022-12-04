@@ -10,6 +10,10 @@ repositories {
 
 dependencies {
   implementation("io.toolisticon.lib:krid:0.0.1")
+  implementation("io.github.microutils:kotlin-logging-jvm:3.0.2")
+
+  testImplementation("org.assertj:assertj-core:3.23.1")
+  testImplementation("org.junit.jupiter:junit-jupiter-params:5.9.1")
 }
 
 
