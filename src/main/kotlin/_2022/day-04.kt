@@ -1,4 +1,6 @@
-package io.github.jangalinski.aoc22
+package io.github.jangalinski.aoc._2022
+
+import io.github.jangalinski.aoc.Input
 
 fun main() {
 
@@ -7,7 +9,7 @@ fun main() {
     return IntRange(a, b).toSet()
   }
 
-  val input = Input("04-1.txt").nonEmptyLines
+  val input = Input("_2022/04-1.txt").nonEmptyLines
     .map {
       val (a, b) = it.split(",").map(::range)
       a to b

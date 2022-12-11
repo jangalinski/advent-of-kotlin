@@ -1,8 +1,10 @@
-package io.github.jangalinski.aoc22
+package io.github.jangalinski.aoc._2022
+
+import io.github.jangalinski.aoc.Input
 
 fun main() {
 
-  val rucksacks = Input("03-1.txt").nonEmptyLines
+  val rucksacks = Input("_2022/03-1.txt").nonEmptyLines
 
   fun String.splitHalf(): Pair<String, String> {
     val half = length/2

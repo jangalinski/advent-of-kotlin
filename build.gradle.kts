@@ -1,6 +1,7 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
   id("org.jetbrains.kotlin.jvm") version "1.7.22"
-  application
 }
 
 repositories {
@@ -16,6 +17,10 @@ dependencies {
   testImplementation("org.junit.jupiter:junit-jupiter-params:5.9.1")
 }
 
+tasks.withType<KotlinCompile> {
+  kotlinOptions.jvmTarget = "1.8"
+  //kotlinOptions.languageVersion = "1.8"
+}
 
 testing {
   suites {
@@ -30,9 +35,4 @@ testing {
       }
     }
   }
-}
-
-application {
-  // Define the main class for the application.
-  mainClass.set("io.github.jangalinski.aoc22.AppKt")
 }

@@ -1,9 +1,11 @@
-package io.github.jangalinski.aoc22
+package io.github.jangalinski.aoc._2022
+
+import io.github.jangalinski.aoc.Input
 
 fun main() {
-  val input = Input("01-1.txt")
+  val input = Input("_2022/01-1.txt")
 
-  val readLongArrays = input.content.split("\n\n").map {block ->
+  val readLongArrays = input.contentTrimmed.split("\n\n").map { block ->
     block.lines()
       .mapNotNull { if(it.trim().isEmpty()) null else it.trim().toLong() }
   }
