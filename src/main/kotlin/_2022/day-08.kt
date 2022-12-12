@@ -1,6 +1,6 @@
 package io.github.jangalinski.aoc._2022
 
-import io.github.jangalinski.aoc.Input
+import io.github.jangalinski.aoc.AoCUtil.Input
 import io.github.jangalinski.aoc._2022.Aoc2208.toTreeView
 import io.github.jangalinski.aoc.cellValues
 import io.github.jangalinski.aoc.krid

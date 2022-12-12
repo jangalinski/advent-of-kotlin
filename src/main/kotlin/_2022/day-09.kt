@@ -6,6 +6,7 @@ import io.toolisticon.lib.krid.Krids.ORIGIN
 import io.toolisticon.lib.krid.model.Cell
 import io.toolisticon.lib.krid.model.step.CompositeStep
 import io.toolisticon.lib.krid.model.step.Direction
+import io.github.jangalinski.aoc.AoCUtil.Input
 
 object Aoc2209 {
   fun findTMove(h: Cell, t: Cell, ignoreAdjacent: Boolean = false): Direction = if (!ignoreAdjacent && h isAdjacentOrEqual t) {

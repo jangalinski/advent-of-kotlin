@@ -9,6 +9,18 @@ import org.junit.jupiter.params.provider.CsvSource
 
 internal class Aoc2211Test {
 
+  @Test
+  fun `parse prime monkey`() {
+    println(Aoc2211.PrimeMonkey.parse("""
+      Monkey 1:
+  Starting items: 59, 65, 86, 56, 74, 57, 56
+  Operation: new = old * 17
+  Test: divisible by 3
+    If true: throw to monkey 3
+    If false: throw to monkey 6
+    """.trimIndent()))
+  }
+
   @ParameterizedTest
   @CsvSource(
     value = [

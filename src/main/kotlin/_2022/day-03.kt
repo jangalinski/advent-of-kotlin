@@ -1,6 +1,6 @@
 package io.github.jangalinski.aoc._2022
 
-import io.github.jangalinski.aoc.Input
+import io.github.jangalinski.aoc.AoCUtil.Input
 
 fun main() {
 

@@ -2,7 +2,7 @@ package io.github.jangalinski.aoc._2022
 
 import io.github.jangalinski.aoc._2022.Aoc2022_07.FileItem.Directory
 import io.github.jangalinski.aoc._2022.Aoc2022_07.isCd
-import io.github.jangalinski.aoc.Input
+import io.github.jangalinski.aoc.AoCUtil.Input
 
 object Aoc2022_07 {
 
