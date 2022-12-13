@@ -1,6 +1,7 @@
 package io.github.jangalinski.aoc
 
 import com.github.freva.asciitable.AsciiTable
+import io.github.jangalinski.aoc.AoCUtil.StringExt.chunkedByEmpty
 import io.toolisticon.lib.krid.Krid
 import io.toolisticon.lib.krid.Krids
 import io.toolisticon.lib.krid.model.Cell
@@ -9,10 +10,10 @@ object AoCUtil {
 
   object KridExt {
 
-    fun <E:Any> Krid<E>.findByValue(value: E) : Cell = this.iterator().asSequence()
+    fun <E : Any> Krid<E>.findByValue(value: E): Cell = this.iterator().asSequence()
       .filter { it.value == value }.single().cell
 
-    fun <E:Any> Krid<E>.table() : String {
+    fun <E : Any> Krid<E>.table(): String {
 
       val h = arrayOf("""y\x""") + (0 until width).map { "$it" }
 
@@ -22,21 +23,21 @@ object AoCUtil {
 
 
 
-      return AsciiTable.getTable(h,d)
+      return AsciiTable.getTable(h, d)
     }
   }
 
+  object StringExt {
+    fun String.nonEmptyLines() = lines().filterNot(String::isEmpty)
+
+    fun String.chunkedByEmpty(): List<List<String>> = this.split("\n\n").map { it.nonEmptyLines() }
+  }
+
   class Input(private val resource: String) {
-    companion object {
-      operator fun invoke(year: Int, day: Int, part: Int = 1, test: Boolean = false): Input {
-        return Input("_$year/${day.toString().padStart(2, '0')}-$part${if (test) "-test" else ""}.txt")
-      }
-
-      fun String.nonEmptyLines() = lines().filterNot(String::isEmpty)
-
-      fun String.chunkedByEmpty(): List<List<String>> = this.split("\n\n").map { it.nonEmptyLines() }
-    }
-
+    constructor(year: Int, day: Int, part: Int = 1, test: Boolean = false) : this(
+      "_$year/${day.toString().padStart(2, '0')
+      }-$part${if (test) "-test" else ""}.txt"
+    )
 
     val contentRaw by lazy {
       requireNotNull(Input::class.java.getResource("/$resource")).readText()
@@ -57,8 +58,20 @@ object AoCUtil {
 
     override fun toString() = "Input(file='$resource', contentRaw='$contentRaw')"
 
+    fun linesChunkedByEmpty() = contentTrimmed.chunkedByEmpty()
   }
 
+  object ListExt {
+    fun <T> List<T>.head(): Pair<T, List<T>> = this.toMutableList().let {
+      val head = it.removeFirst()
+      head to it.toList()
+    }
+
+    fun <T> List<T>.tail(): Pair<List<T>, T> = this.toMutableList().let {
+      val tail = it.removeLast()
+      it.toList() to tail
+    }
+  }
 
   fun String.toNonEmptyTrimmedLines() = this.lines()
     .map { it.trim() }

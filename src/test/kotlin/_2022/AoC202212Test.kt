@@ -1,7 +1,6 @@
 package io.github.jangalinski.aoc._2022
 
 import io.github.jangalinski.aoc._2022.AoC202212.HeightMap
-import io.github.jangalinski.aoc._2022.AoC202212.canMoveTo
 import io.toolisticon.lib.krid.Krids.cell
 import io.toolisticon.lib.krid.Krids.krid
 import org.assertj.core.api.Assertions.assertThat
@@ -32,7 +31,7 @@ internal class AoC202212Test {
       "0.0;1.0,0.1",
       "5.2;",
       "4.3;5.3,4.4,3.3",
-      "5.3;5.2,6.3,5.4,4.3",
+      "5.3;6.3,5.4,4.3",
     ], delimiterString = ";"
   )
   fun `possible next`(c: String, expectedNext: String?) {
@@ -60,6 +59,6 @@ internal class AoC202212Test {
     "c,S,false",
   ])
   fun `can move to`(s:Char,t:Char,expected:Boolean) {
-    assertThat(s canMoveTo t).isEqualTo(expected)
+    assertThat(AoC202212.CanMoveToAndFallDown(s,t)).isEqualTo(expected)
   }
 }
