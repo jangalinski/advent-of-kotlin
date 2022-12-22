@@ -13,12 +13,12 @@ object AoCUtil {
     fun <E : Any> Krid<E>.findByValue(value: E): Cell = this.iterator().asSequence()
       .filter { it.value == value }.single().cell
 
-    fun <E : Any> Krid<E>.table(): String {
+    fun <E : Any?> Krid<E>.table(value: (E)->String = { "$it" }): String {
 
       val h = arrayOf("""y\x""") + (0 until width).map { "$it" }
 
       val d = rows().map { row ->
-        arrayOf("${row.index}") + row.values.map { "$it" }
+        arrayOf("${row.index}") + row.values.map(value)
       }.toTypedArray()
 
 
@@ -31,6 +31,11 @@ object AoCUtil {
     fun String.nonEmptyLines() = lines().filterNot(String::isEmpty)
 
     fun String.chunkedByEmpty(): List<List<String>> = this.split("\n\n").map { it.nonEmptyLines() }
+
+    fun String.toPair(splitter: String): Pair<String, String> {
+      val (a,b) = this.split(splitter)
+      return a to b
+    }
   }
 
   class Input(private val resource: String) {
