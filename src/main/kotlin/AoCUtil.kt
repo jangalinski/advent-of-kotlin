@@ -5,10 +5,13 @@ import io.github.jangalinski.aoc.AoCUtil.StringExt.chunkedByEmpty
 import io.toolisticon.lib.krid.Krid
 import io.toolisticon.lib.krid.Krids
 import io.toolisticon.lib.krid.model.Cell
+import io.toolisticon.lib.krid.model.step.Direction
 
 object AoCUtil {
 
   object KridExt {
+
+    fun Cell.adjacentInDir(vararg directions: Direction): List<Cell> = directions.map { this(it.singleStep) }
 
     fun <E : Any> Krid<E>.findByValue(value: E): Cell = this.iterator().asSequence()
       .filter { it.value == value }.single().cell
