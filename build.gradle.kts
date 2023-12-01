@@ -14,6 +14,8 @@ dependencies {
   implementation("io.github.microutils:kotlin-logging-jvm:3.0.2")
   implementation("com.github.freva:ascii-table:1.8.0")
 
+  implementation("com.ibm.icu:icu4j:73.2")
+
   testImplementation("org.assertj:assertj-core:3.23.1")
   testImplementation("org.junit.jupiter:junit-jupiter-params:5.9.1")
 }
