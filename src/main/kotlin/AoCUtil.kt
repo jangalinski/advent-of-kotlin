@@ -16,7 +16,7 @@ object AoCUtil {
     fun <E : Any> Krid<E>.findByValue(value: E): Cell = this.iterator().asSequence()
       .filter { it.value == value }.single().cell
 
-    fun <E : Any?> Krid<E>.table(value: (E)->String = { "$it" }): String {
+    fun <E : Any?> Krid<E>.table(value: (E) -> String = { "$it" }): String {
 
       val h = arrayOf("""y\x""") + (0 until width).map { "$it" }
 
@@ -36,14 +36,17 @@ object AoCUtil {
     fun String.chunkedByEmpty(): List<List<String>> = this.split("\n\n").map { it.nonEmptyLines() }
 
     fun String.toPair(splitter: String): Pair<String, String> {
-      val (a,b) = this.split(splitter)
-      return a to b
+      val (a, b) = this.split(splitter)
+      return a.trim() to b.trim()
     }
+
+    fun String.splitTrimmed(splitter: String): List<String> = this.split(splitter).map { it.trim() }.filterNot(String::isEmpty)
   }
 
   class Input(private val resource: String) {
     constructor(year: Int, day: Int, part: Int = 1, test: Boolean = false) : this(
-      "_$year/${day.toString().padStart(2, '0')
+      "_$year/${
+        day.toString().padStart(2, '0')
       }-$part${if (test) "-test" else ""}.txt"
     )
 
@@ -78,6 +81,12 @@ object AoCUtil {
     fun <T> List<T>.tail(): Pair<List<T>, T> = this.toMutableList().let {
       val tail = it.removeLast()
       it.toList() to tail
+    }
+
+    fun <T> Iterable<T>.peekPrint() = peek { println(it) }
+    fun <T> Iterable<T>.peek(fn: (T) -> Unit) = map {
+      fn(it)
+      it
     }
   }
 
