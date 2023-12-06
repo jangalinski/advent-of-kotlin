@@ -41,6 +41,9 @@ object AoCUtil {
     }
 
     fun String.splitTrimmed(splitter: String): List<String> = this.split(splitter).map { it.trim() }.filterNot(String::isEmpty)
+
+    fun String.intValues() = this.split("""\s+""".toRegex()).map { it.trim() }.filterNot { it.isBlank() }.map { it.toInt() }
+    fun String.longValues() = this.split("""\s+""".toRegex()).map { it.trim() }.filterNot { it.isBlank() }.map { it.toLong() }
   }
 
   class Input(private val resource: String) {
