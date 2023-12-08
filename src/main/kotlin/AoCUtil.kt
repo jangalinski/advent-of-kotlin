@@ -160,6 +160,13 @@ object AoCUtil {
     }
   }
 
+  fun factors(n:Int) {
+    if (n < 1) return
+    (1..n / 2)
+      .filter { n % it == 0 }
+      .forEach { print("$it ") }
+  }
+
   fun printFactors(n: Int) {
     if (n < 1) return
     print("$n => ")
@@ -168,6 +175,7 @@ object AoCUtil {
       .forEach { print("$it ") }
     println(n)
   }
+
 
 
 }
