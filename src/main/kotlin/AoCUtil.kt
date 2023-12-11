@@ -1,6 +1,8 @@
 package io.github.jangalinski.aoc
 
 import com.github.freva.asciitable.AsciiTable
+import io.github.jangalinski.aoc.AoCUtil.ListExt.peekPrint
+import io.github.jangalinski.aoc.AoCUtil.ListExt.permutations
 import io.github.jangalinski.aoc.AoCUtil.StringExt.chunkedByEmpty
 import io.toolisticon.lib.krid.Krid
 import io.toolisticon.lib.krid.Krids
@@ -86,10 +88,28 @@ object AoCUtil {
       it.toList() to tail
     }
 
+    fun <T> Sequence<T>.peekPrint() = map {
+      println(it)
+      it
+    }
+
     fun <T> Iterable<T>.peekPrint() = peek { println(it) }
     fun <T> Iterable<T>.peek(fn: (T) -> Unit) = map {
       fn(it)
       it
+    }
+
+    fun <T> List<T>.permutations(): Set<List<T>> {
+      if (this.isEmpty()) return setOf(emptyList())
+
+      val result: MutableSet<List<T>> = mutableSetOf()
+      for (i in this.indices) {
+        val list = this - this[i]
+        list.permutations().forEach{
+            item -> result.add(item + this[i])
+        }
+      }
+      return result
     }
   }
 
@@ -179,7 +199,7 @@ object AoCUtil {
 }
 
 fun main(args: Array<String>) {
-//  val numbers = intArrayOf(11, 21, 32, 45, 67, 96)
-//  for (number in numbers) AoCUtil.printFactors(number)
-
+  val l = listOf(0 to 1, 2 to 3, 3 to 4)
+  val p = l.permutations()
+  p.peekPrint()
 }
