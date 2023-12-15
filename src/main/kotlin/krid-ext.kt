@@ -19,6 +19,29 @@ fun <E : Any> krid(dimension: Dimension, emptyValue: E, cellValues: List<CellVal
   )
 }
 
+
+fun <E> krid(columns: Columns<E>, emptyElement: E): Krid<E> {
+  require(columns.isNotEmpty()) { "columns must not be empty: $columns" }
+  require(columns.none { it.isEmpty() }) { "no columns must be empty: $columns" }
+  require(columns.maxOf { it.size } == columns.minOf { it.size }) { "all columns must have same size: $columns" }
+
+  val dimension = Dimension(width = columns.size, height = columns[0].size)
+
+  val list = buildList<E> {
+    columns.sortedBy { it.index }.forEach {col ->
+      dimension.rowRange.forEach { index ->
+        add(col[index])
+      }
+    }
+  }
+
+  return Krid(
+    dimension = dimension,
+    emptyElement = emptyElement,
+    list = list
+  )
+}
+
 val Krid<*>.indexTransformer: IndexTransformer get() = IndexTransformer(this.width)
 
 //fun <E:Any> krid(krid : Krid<E>,)
